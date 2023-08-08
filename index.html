@@ -5,10 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assets/styles.css">
     <title>Lyric-Lookup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
     
+    <div class="container-fluid"><h1>Search for your favorite Songs!</h1></body>
+    <hr>
 
+    <!-- Search Bar -->
+    <div class="search container-fluid row">
+        <h5>Enter</h5>
+        <div class="input-group input-group-lg">
+            <span class="input-group-text bg-danger text-white" id="inputGroup-sizing-lg">Search</span>
+            <input type="text" class="form-control" placeholder="Enter your favorite song" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        </div>
+    </div>
+
+
+    <!-- Display data -->
+    <div class="container row">
+        <div class="data col-4">
+            <!-- Where we will display the song data (Album, artist, etc.) -->
+            <h5>Song Data</h5>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores 
+                nostrum vero ipsam, nam placeat eveniet dolorum iusto voluptates, 
+                id a quam. Debitis sit quas excepturi sequi dicta dolore autem saepe.
+            </p>
+        </div>
+        <div class="lyrics col-8">
+            <!-- Where we will display the lyrics -->
+            <h5>Lyrics</h5>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste perspiciatis, 
+                corrupti culpa rem nesciunt, eligendi reiciendis ad consectetur incidunt 
+                sequi odit? Adipisci reprehenderit, suscipit tenetur at nostrum quia harum sunt.
+            </p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam, doloremque praesentium 
+                et corrupti voluptatem provident ex! Porro et expedita aliquid voluptatibus praesentium 
+                quaerat dolorum, recusandae, odio exercitationem ducimus accusamus dolorem.
+            </p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="./Assets/main.js"></script>
 </body>
 </html>
