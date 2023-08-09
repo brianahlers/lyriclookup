@@ -49,3 +49,6 @@ if (event.data == YT.PlayerState.PLAYING && !done) {
 function stopVideo() {
 player.stopVideo();
 }
+
+
+// MUSICXMACH API SECTION
