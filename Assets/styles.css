@@ -14,6 +14,9 @@ h1{
     font-weight: 900;
     color: white;
 }
+h2{
+    text-align: center;
+}
 .container-fluid{
     color: #fff;
     background:#222;
