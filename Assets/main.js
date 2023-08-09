@@ -26,6 +26,9 @@ player = new YT.Player('player', {
     }
 });
 }
+//possible strt for search bar to connect to api? not sure if right way ===caleb
+const searchBox = document.querySelector(".input-group input-group-lg")
+// const searchbtn = document.querySelector() wasnt sure about the search button(seems connected to the text input bar?) ==caleb
 
 
 //The API will call this function when the video player is ready.
