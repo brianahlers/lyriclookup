@@ -1,54 +1,61 @@
+var songID = '';
+var height = '';
+var width = '';
+var pic = '';
+var iframe = document.getElementById('player');
+
+function btnClick() {
+    $("#inputGroup-sizing-lg").click(function(){
+        var userSong = $("#userSong").val();
+        console.log(userSong);
+        APIcall();
+    });
+
+}
+
 
 //YOUTUBE API SECTION
 
-//This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-//This function creates an <iframe> (and YouTube player)
-//after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'M7lc1UVf-VE',
-    playerVars: {
-    'playsinline': 1
-    },
-    events: {
-    'onReady': onPlayerReady,
-    'onStateChange': onPlayerStateChange
-    }
-});
+function APIcall() {
+    var userSong = $("#userSong").val();
+    var url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet%2C%20id&maxResults=1&q=';
+    var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
+    var queryURL = url + userSong + APIKey;
+    // var newURL = 'https://www.youtube.com/watch?v=';
+     
+    fetch(queryURL).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                songID = data.items[0].id.videoId;
+                height = data.items[0].snippet.thumbnails.high.height;
+                width = data.items[0].snippet.thumbnails.high.width;
+                pic = data.items[0].snippet.thumbnails.high.url;
+                console.log(songID);
+                console.log(height);
+                console.log(width);
+                $('#player').attr('src', 'https://www.youtube.com/embed/' + songID + '?autoplay=1?enablejsapi=1');
+                // $('#player').attr('src', pic);
+                $('#player').attr('width', width);
+                // $('#player').attr('height', height);
+                // newURL += songID;
+            })
+        }
+    })
+    
 }
 
 
-//The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-
-//The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-}
-}
-
-
-function stopVideo() {
-player.stopVideo();
-}
+btnClick();
 
 
 // MUSICXMACH API SECTION
+
+
+// to do items
+// get search query from search bar
+
+// use it to make a request to the api server
+// function to call the server
+
+
+// looking to get track name, lyrics, and artist name
