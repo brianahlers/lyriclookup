@@ -2,6 +2,7 @@ var songID = '';
 var height = '';
 var width = '';
 var pic = '';
+// var track_id;
 var iframe = document.getElementById('player');
 
 function btnClick() {
@@ -9,6 +10,7 @@ function btnClick() {
         var userSong = $("#userSong").val();
         console.log(userSong);
         APIcall();
+        trackIDAPIcall();
     });
 
 }
@@ -17,7 +19,7 @@ function btnClick() {
 //YOUTUBE API SECTION
 
 function APIcall() {
-    var userSong = $("#userSong").val();
+    var userSong = $("#userSong").val() + " cover";
     var url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet%2C%20id&maxResults=1&q=';
     var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
     var queryURL = url + userSong + APIKey;
@@ -49,6 +51,26 @@ btnClick();
 
 
 // MUSICXMATCH API SECTION
+
+function trackIDAPIcall() {
+    var userInput = $("#userSong").val();
+    var url = 'http://api.musixmatch.com/ws/1.1/track.search?page_size=1&page=1&s_track_rating=desc';
+    var APIKey = '&apikey=c31a3caa2fcc7a9c42c1363b7ce5ca85&q_track=';
+    var trackURL = url + APIKey +userInput; 
+
+    fetch(trackURL).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                track_id = data.message.body.track_list[0].track.track_id;
+                $("#trackID").text() = track_id;
+                console.log(track_id);
+            })
+        } 
+    })
+
+}
+
+
 
 // to do items
 // get search query from search bar
