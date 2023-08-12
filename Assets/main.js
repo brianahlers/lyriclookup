@@ -48,7 +48,17 @@ function APIcall() {
 btnClick();
 
 
-// MUSICXMACH API SECTION
+// MUSICXMATCH API SECTION
+
+// to do items
+// get search query from search bar
+
+// use it to make a request to the api server
+// function to call the server
+
+
+// looking to get track name, lyrics, and artist name
+
 
 
 // to do items
