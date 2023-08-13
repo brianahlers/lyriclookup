@@ -2,10 +2,16 @@
 //YOUTUBE API SECTION
 
 //Local Storage
+document.addEventListener('DOMContentLoaded', function(){
     const searchInput = document.querySelector('.form-control');
     const lyricsSection = document.querySelector('.lyrics');
     const songDataSection = document.querySelector('.data');
+    const searchButton = document.querySelector('#search-button')
+    
+    searchButton.addEventListener('click', grabData)
 
+
+    function grabData(){
     // Function to save search input to local storage
     function saveSearchInput(inputValue) {
         localStorage.setItem('searchInput', inputValue);
@@ -37,7 +43,7 @@
     }
 
     // Event listener for search input
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function(event) {
         const inputValue = event.target.value;
         saveSearchInput(inputValue);
     });
@@ -45,8 +51,14 @@
     // Call load functions to populate data when the page loads
     loadSearchInput();
     loadSongData();
+    saveSongData();
+    }
+});    
+
+
 
 //This code loads the IFrame Player API code asynchronously.
+
 var tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
@@ -58,6 +70,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 //This function creates an <iframe> (and YouTube player)
 //after the API code downloads.
+
 var player;
 function onYouTubeIframeAPIReady() {
 player = new YT.Player('player', {
@@ -76,6 +89,7 @@ player = new YT.Player('player', {
 
 
 //The API will call this function when the video player is ready.
+
 function onPlayerReady(event) {
     event.target.playVideo();
   }
@@ -84,6 +98,7 @@ function onPlayerReady(event) {
 //The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
+
 var done = false;
 function onPlayerStateChange(event) {
 if (event.data == YT.PlayerState.PLAYING && !done) {
