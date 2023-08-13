@@ -29,3 +29,7 @@ h5{
 .data{
     text-align: center;
 }
+.input-group button{
+    color:#fff;
+    background-color: red;
+}

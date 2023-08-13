@@ -28,6 +28,19 @@ player = new YT.Player('player', {
 }
 //possible strt for search bar to connect to api? not sure if right way ===caleb
 const searchBox = document.querySelector(".input-group input-group-lg")
+const searchBtn = document.querySelector(".search")
+async function checkVideo(){
+    const response = await fetch(apiURL + search +`&appid=${apikey}`);
+    var data = await response.json()
+
+    console.log(data)
+
+    UC2pmfLm7iq6Ov1UwYrWYkZA
+
+}
+searchBtn.addEventListener("click", ()=>{
+    checkVideo(searchBox.value)
+})
 // const searchbtn = document.querySelector() wasnt sure about the search button(seems connected to the text input bar?) ==caleb
 
 
@@ -55,3 +68,5 @@ player.stopVideo();
 
 
 // MUSICXMACH API SECTION
+
+
