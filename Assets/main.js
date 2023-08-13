@@ -1,72 +1,79 @@
+var songID = '';
+var height = '';
+var width = '';
+var pic = '';
+// var track_id;
+var iframe = document.getElementById('player');
+
+function btnClick() {
+    $("#inputGroup-sizing-lg").click(function () {
+        var userSong = $("#userSong").val();
+        console.log(userSong);
+        APIcall();
+        trackIDAPIcall();
+    });
+
+}
+
 
 //YOUTUBE API SECTION
 
-//This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
+function APIcall() {
+    var userSong = $("#userSong").val() + " cover";
+    var url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet%2C%20id&maxResults=1&q=';
+    var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
+    var queryURL = url + userSong + APIKey;
+    // var newURL = 'https://www.youtube.com/watch?v=';
 
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-//This function creates an <iframe> (and YouTube player)
-//after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'M7lc1UVf-VE',
-    playerVars: {
-    'playsinline': 1
-    },
-    events: {
-    'onReady': onPlayerReady,
-    'onStateChange': onPlayerStateChange
-    }
-});
-}
-//possible strt for search bar to connect to api? not sure if right way ===caleb
-const searchBox = document.querySelector(".input-group input-group-lg")
-const searchBtn = document.querySelector(".search")
-async function checkVideo(){
-    const response = await fetch(apiURL + search +`&appid=${apikey}`);
-    var data = await response.json()
-
-    console.log(data)
-
-    UC2pmfLm7iq6Ov1UwYrWYkZA
+    fetch(queryURL).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                songID = data.items[0].id.videoId;
+                height = data.items[0].snippet.thumbnails.high.height;
+                width = data.items[0].snippet.thumbnails.high.width;
+                pic = data.items[0].snippet.thumbnails.high.url;
+                console.log(songID);
+                console.log(height);
+                console.log(width);
+                $('#player').attr('src', 'https://www.youtube.com/embed/' + songID + '?autoplay=1?enablejsapi=1');
+                // $('#player').attr('src', pic);
+                $('#player').attr('width', width);
+                // $('#player').attr('height', height);
+                // newURL += songID;
+            })
+        }
+    })
 
 }
-searchBtn.addEventListener("click", ()=>{
-    checkVideo(searchBox.value)
-})
-// const searchbtn = document.querySelector() wasnt sure about the search button(seems connected to the text input bar?) ==caleb
 
 
-//The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-  }
+btnClick();
 
 
-//The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-}
-}
+// MUSICXMATCH API SECTION
 
+//THIRD ATTEMPT SAT 7PM-- GIVES US A 404 ERROR and UNEXPECTED TOKEN ON LINE 74
+function trackIDAPIcall() {
+    var userInput = $("#userSong").val();
 
-function stopVideo() {
-player.stopVideo();
+    // Construct the URL for the request
+    var url = 'http://api.musixmatch.com/ws/1.1/track.search?page_size=1&page=1&s_track_rating=desc';
+    var APIKey = 'c31a3caa2fcc7a9c42c1363b7ce5ca85';
+    var trackQuery = 'q_track=' + encodeURIComponent(userInput);
+    var trackURL = url + '&apikey=' + APIKey + trackQuery;
+
+    // Make a request to the server proxy
+    fetch(`/getTrackInfo?userInput=${encodeURIComponent(trackURL)}`)
+        .then(response => response.json())
+        .then(data => {
+            var track_id = data.message.body.track_list[0].track.track_id;
+            $("#trackID").text(track_id);
+            console.log(track_id);
+        })
+         .catch(error => {
+             console.error("Error fetching track:", error);
+         });
 }
 
 
 // MUSICXMACH API SECTION
-
-
