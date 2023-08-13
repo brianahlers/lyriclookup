@@ -1,12 +1,59 @@
 
 //YOUTUBE API SECTION
 
+//Local Storage
+    const searchInput = document.querySelector('.form-control');
+    const lyricsSection = document.querySelector('.lyrics');
+    const songDataSection = document.querySelector('.data');
+
+    // Function to save search input to local storage
+    function saveSearchInput(inputValue) {
+        localStorage.setItem('searchInput', inputValue);
+    }
+
+    // Function to load and display saved search input from local storage
+    function loadSearchInput() {
+        const savedInput = localStorage.getItem('searchInput');
+
+        if (savedInput) {
+            searchInput.value = savedInput;
+        }
+    }
+
+    // Function to save lyrics and song data to local storage
+    function saveSongData(lyrics, songData) {
+        const data = { lyrics, songData };
+        localStorage.setItem('songData', JSON.stringify(data));
+    }
+
+    // Function to load and display saved lyrics and song data from local storage
+    function loadSongData() {
+        const savedData = JSON.parse(localStorage.getItem('songData'));
+
+        if (savedData) {
+            lyricsSection.innerHTML = `<h5>Lyrics</h5><p>${savedData.lyrics}</p>`;
+            songDataSection.innerHTML = `<h5>Song Data</h5><p>${savedData.songData}</p>`;
+        }
+    }
+
+    // Event listener for search input
+    searchInput.addEventListener('input', function() {
+        const inputValue = event.target.value;
+        saveSearchInput(inputValue);
+    });
+
+    // Call load functions to populate data when the page loads
+    loadSearchInput();
+    loadSongData();
+
 //This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
 
 
 //This function creates an <iframe> (and YouTube player)
