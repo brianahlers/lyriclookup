@@ -24,7 +24,7 @@ function APIcall() {
     var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
     var queryURL = url + userSong + APIKey;
     // var newURL = 'https://www.youtube.com/watch?v=';
-
+//used to many words, wasnt able to get the "get" so i removed it and 404 dissappeared ====>caleb
     fetch(queryURL).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -48,7 +48,11 @@ function APIcall() {
 
 
 btnClick();
-
+// const searchBtn = document.querySelector(".search")
+// const searchBox = document.querySelector("userSong")
+// searchBtn.addEventListener("click", ()=>{
+//     APIcall(searchBox.value)
+// })
 
 // MUSICXMATCH API SECTION
 
@@ -57,13 +61,14 @@ function trackIDAPIcall() {
     var userInput = $("#userSong").val();
 
     // Construct the URL for the request
+    //used too many words...was literally 
     var url = 'http://api.musixmatch.com/ws/1.1/track.search?page_size=1&page=1&s_track_rating=desc';
     var APIKey = 'c31a3caa2fcc7a9c42c1363b7ce5ca85';
     var trackQuery = 'q_track=' + encodeURIComponent(userInput);
     var trackURL = url + '&apikey=' + APIKey + trackQuery;
 
     // Make a request to the server proxy
-    fetch(`/getTrackInfo?userInput=${encodeURIComponent(trackURL)}`)
+    fetch(`userInput=${encodeURIComponent(trackURL)}`)
         .then(response => response.json())
         .then(data => {
             var track_id = data.message.body.track_list[0].track.track_id;
