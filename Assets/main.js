@@ -2,51 +2,52 @@
 //YOUTUBE API SECTION
 
 //Local Storage
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     const searchButton = document.getElementById('search-button');
     const searchInput = document.querySelector('.input-group input');
     const recentSearchesContainer = document.getElementById('recent-searches');
-
-    searchButton.addEventListener('click', function(){
-        const searchValue = searchInput.value.trim();
-        if(searchValue !== '') {
-            //Save the search value to local storage
-            saveSearchToLocalStorage(searchValue);
-            //performthe search and update the video, lyrics, and song data section
-        }
-    })
-
-    function saveSearchToLocalStorage(){
-
-        //Retrieve existing searches from local storage
-        let recentSearches = JSON.parse(localStorage.getItem('recentSearches'))
-
-        //Add the new search value to the list
-        recentSearches.unshift(searchValue);
-
-        //Keep only the latest 5 searches
-        if(recentSearches.length>5){
-            recentSearches.pop();
-        }
-
-        //Save the updated list back to local storage
-        localStorage.setItem('recentSearches'.JSON.stringify(recentSearches));
-
-        //Display recent searches
-        displayRecentSearches(recentSearches);
+  
+    searchButton.addEventListener('click', function () {
+      const searchValue = searchInput.value.trim();
+      if (searchValue !== '') {
+        // Save the search value to local storage
+        saveSearchToLocalStorage(searchValue);
+        // Perform the search and update the video, lyrics, and song data section
+      }
+    });
+  
+    function saveSearchToLocalStorage(searchValue) {
+      // Retrieve existing searches from local storage
+      let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+  
+      // Add the new search value to the list
+      recentSearches.unshift(searchValue);
+  
+      // Keep only the latest 5 searches
+      if (recentSearches.length > 5) {
+        recentSearches.pop();
+      }
+  
+      // Save the updated list back to local storage
+      localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+  
+      // Display recent searches
+      displayRecentSearches(recentSearches);
     }
-
-    function displayRecentSearches(recentSearches){
-        recentSearchesContainer.innerHTML = ''; //Clear the container
-        for (const search of recentSearches){
-            const searchItem = document.createElement('div');
-            searchItem.textContent = search;
-            recentSearchesContainer.appendChild(searchItem);
-        }
+  
+    function displayRecentSearches(recentSearches) {
+      recentSearchesContainer.innerHTML = ''; // Clear the container
+      for (const search of recentSearches) {
+        const searchItem = document.createElement('div');
+        searchItem.textContent = search;
+        recentSearchesContainer.appendChild(searchItem);
+      }
     }
-    //Display initial recent searches on page load
-    displayRecentRearches(JSON.parse(LocalStorage.getItem('recentSearches')) || []);
-})
+  
+    // Display initial recent searches on page load
+    displayRecentSearches(JSON.parse(localStorage.getItem('recentSearches')) || []);
+  });
+  
 // document.addEventListener('DOMContentLoaded', function(){
 //     const searchInput = document.querySelector('.form-control');
 //     const lyricsSection = document.querySelector('.lyrics');
