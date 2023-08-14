@@ -13,12 +13,12 @@
     <hr>
 
     <!-- Search Bar -->
-    <div class="search container-fluid row">
+    <div class="search container-fluid row justify-content-center">
         <h5>Enter Your choice below</h5>
-        <div class="input-group input-group-lg">
-            <button class="btn btn-outline-secondary bg-success text-white" type="button" id="inputGroup-sizing-lg">Search</button>
-            <button class="btn btn-outline-secondary bg-danger text-white" type="button" id="clear">Clear</button>
-            <input id="userSong" type="text" class="form-control" placeholder="Enter your favorite song" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        <div class="input-group input-group-lg flex-sm-wrap" style="width: 50%;">
+            <input id="userSong" type="text" class="form-control col-sm-12 col-md-6 col-lg-10" placeholder="Enter your favorite song" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            <button class="btn btn-outline-secondary bg-success text-white col-sm-12 col-md-3 col-lg-2" type="button" id="inputGroup-sizing-lg">Search</button>
+            <button class="btn btn-outline-secondary bg-danger text-white col-sm-12 col-md-3 col-lg-2" type="button" id="clear">Clear</button>
         </div>
     </div>
 
@@ -31,10 +31,10 @@
         width="" height="" src="" frameborder="0"></iframe>
 
         <!-- Lyrics -->
-        <div class="lyrics col-md-4 col-lg-6">
+        <div class="lyrics col-md-4 col-lg-6 justify-content-around">
             <h5>Lyrics</h5>
             <!-- <p id="trackID"></p> -->
-            <div id="lyrics"></div>
+            <div id="lyrics" class="overflow-auto" style="max-width: 800px; max-height: 500px; font-size: 25px;"></div>
         </div>
     </div>
 

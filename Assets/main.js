@@ -34,7 +34,7 @@ document.getElementById("clear").addEventListener("click", function() {
 // There is a daily limit.
 
 function APIcall() {
-    var userSong = $("#userSong").val() + ' cover';
+    // var userSong = $("#userSong").val() + ' cover';
     // var url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet%2C%20id&maxResults=1&q=';
     // var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
     // var queryURL = url + userSong + APIKey;
