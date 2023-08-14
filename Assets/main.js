@@ -2,58 +2,108 @@
 //YOUTUBE API SECTION
 
 //Local Storage
-document.addEventListener('DOMContentLoaded', function(){
-    const searchInput = document.querySelector('.form-control');
-    const lyricsSection = document.querySelector('.lyrics');
-    const songDataSection = document.querySelector('.data');
-    const searchButton = document.querySelector('#search-button')
+document.addEventListener("DOMContentLoaded", function(){
+    const searchButton = document.getElementById('search-button');
+    const searchInput = document.querySelector('.input-group input');
+    const recentSearchesContainer = document.getElementById('recent-searches');
+
+    searchButton.addEventListener('click', function(){
+        const searchValue = searchInput.value.trim();
+        if(searchValue !== '') {
+            //Save the search value to local storage
+            saveSearchToLocalStorage(searchValue);
+            //performthe search and update the video, lyrics, and song data section
+        }
+    })
+
+    function saveSearchToLocalStorage(){
+
+        //Retrieve existing searches from local storage
+        let recentSearches = JSON.parse(localStorage.getItem('recentSearches'))
+
+        //Add the new search value to the list
+        recentSearches.unshift(searchValue);
+
+        //Keep only the latest 5 searches
+        if(recentSearches.length>5){
+            recentSearches.pop();
+        }
+
+        //Save the updated list back to local storage
+        localStorage.setItem('recentSearches'.JSON.stringify(recentSearches));
+
+        //Display recent searches
+        displayRecentSearches(recentSearches);
+    }
+
+    function displayRecentSearches(recentSearches){
+        recentSearchesContainer.innerHTML = ''; //Clear the container
+        for (const search of recentSearches){
+            const searchItem = document.createElement('div');
+            searchItem.textContent = search;
+            recentSearchesContainer.appendChild(searchItem);
+        }
+    }
+    //Display initial recent searches on page load
+    displayRecentRearches(JSON.parse(LocalStorage.getItem('recentSearches')) || []);
+})
+// document.addEventListener('DOMContentLoaded', function(){
+//     const searchInput = document.querySelector('.form-control');
+//     const lyricsSection = document.querySelector('.lyrics');
+//     const songDataSection = document.querySelector('.data');
+//     const searchButton = document.querySelector('#search-button')
     
-    searchButton.addEventListener('click', grabData)
+//     searchButton.addEventListener('click', function(){
+//         const searchValue = searchInput.value.trim();
+//         if(searchValue !== ''){
+//             saveSearchToLocalStorage(searchValue);
+//         }
+//     })
 
 
-    function grabData(){
-    // Function to save search input to local storage
-    function saveSearchInput(inputValue) {
-        localStorage.setItem('searchInput', inputValue);
-    }
+//     function grabData(){
+//     // Function to save search input to local storage
+//     function saveSearchInput(inputValue) {
+//         localStorage.setItem('searchInput', inputValue);
+//     }
 
-    // Function to load and display saved search input from local storage
-    function loadSearchInput() {
-        const savedInput = localStorage.getItem('searchInput');
+//     // Function to load and display saved search input from local storage
+//     function loadSearchInput() {
+//         const savedInput = localStorage.getItem('searchInput');
 
-        if (savedInput) {
-            searchInput.value = savedInput;
-        }
-    }
+//         if (savedInput) {
+//             searchInput.value = savedInput;
+//         }
+//     }
 
-    // Function to save lyrics and song data to local storage
-    function saveSongData(lyrics, songData) {
-        const data = { lyrics, songData };
-        localStorage.setItem('songData', JSON.stringify(data));
-    }
+//     // Function to save lyrics and song data to local storage
+//     function saveSongData(lyrics, songData) {
+//         const data = { lyrics, songData };
+//         localStorage.setItem('songData', JSON.stringify(data));
+//     }
 
-    // Function to load and display saved lyrics and song data from local storage
-    function loadSongData() {
-        const savedData = JSON.parse(localStorage.getItem('songData'));
+//     // Function to load and display saved lyrics and song data from local storage
+//     function loadSongData() {
+//         const savedData = JSON.parse(localStorage.getItem('songData'));
 
-        if (savedData) {
-            lyricsSection.innerHTML = `<h5>Lyrics</h5><p>${savedData.lyrics}</p>`;
-            songDataSection.innerHTML = `<h5>Song Data</h5><p>${savedData.songData}</p>`;
-        }
-    }
+//         if (savedData) {
+//             lyricsSection.innerHTML = `<h5>Lyrics</h5><p>${savedData.lyrics}</p>`;
+//             songDataSection.innerHTML = `<h5>Song Data</h5><p>${savedData.songData}</p>`;
+//         }
+//     }
 
-    // Event listener for search input
-    searchInput.addEventListener('input', function(event) {
-        const inputValue = event.target.value;
-        saveSearchInput(inputValue);
-    });
+//     // Event listener for search input
+//     searchInput.addEventListener('input', function(event) {
+//         const inputValue = event.target.value;
+//         saveSearchInput(inputValue);
+//     });
 
-    // Call load functions to populate data when the page loads
-    loadSearchInput();
-    loadSongData();
-    saveSongData();
-    }
-});    
+//     // Call load functions to populate data when the page loads
+//     loadSearchInput();
+//     loadSongData();
+//     saveSongData();
+//     }
+// });    
 
 
 
