@@ -29,10 +29,10 @@ h5{
 .data{
     text-align: center;
 }
-<<<<<<< HEAD
-=======
 .input-group button{
     color:#fff;
+    background-color: blue;
+}
+.input-group button{
     background-color: red;
 }
->>>>>>> 922e42e07dd85e625361326f3242cd19e989fc2c
