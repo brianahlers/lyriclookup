@@ -1,11 +1,14 @@
 *{
     margin: 0;
     padding: 0;
-    background: #222;
+    /* background: #222; */
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background: #222;
+    background: url(./Images/soundwave.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 9999;
 }
 h1{
     text-align: center;
@@ -18,7 +21,7 @@ h2{
 }
 .container-fluid{
     color: #fff;
-    background:#222;
+    /* background:#222; */
 }
 h5{
     text-align: center;
@@ -31,10 +34,10 @@ h5{
 }
 .input-group button{
     color:#fff;
-    background-color: blue;
+    /* background-color: blue; */
 }
 .input-group button{
-    background-color: red;
+    /* background-color: red; */
 }
 .artist-data {
     margin-top: 25px;
