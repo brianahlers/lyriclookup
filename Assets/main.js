@@ -12,9 +12,21 @@ var iframe = document.getElementById('player');
 var trackLyricsURL = '';
 
 
+$(document).ready(function(e) {
+    $('#videoSection').hide();
+    $('#dataSection').hide();
+    $('#recent-searches').hide();
+});
+
+
 //Click function
 function btnClick() {
     $("#inputGroup-sizing-lg").click(function(){
+
+        $('#videoSection').show();
+        $('#dataSection').show();
+        $('#recent-searches').show();
+
         var userSong = $("#userSong").val();
         console.log(userSong);
         APIcall();

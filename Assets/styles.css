@@ -8,7 +8,7 @@ body{
     background: url(./Images/soundwave.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 9999;
+    z-index: 90;
 }
 h1{
     text-align: center;
