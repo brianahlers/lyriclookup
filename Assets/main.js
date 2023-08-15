@@ -21,6 +21,54 @@ function btnClick() {
 }
 
 
+//Local Storage
+document.addEventListener("DOMContentLoaded", function () {
+    const searchButton = document.getElementById('inputGroup-sizing-lg');
+    const searchInput = document.querySelector('.input-group input');
+    const recentSearchesContainer = document.getElementById('recent-searches');
+  
+    searchButton.addEventListener('click', function () {
+      const searchValue = searchInput.value.trim();
+      if (searchValue !== '') {
+        // Save the search value to local storage
+        saveSearchToLocalStorage(searchValue);
+        // Perform the search and update the video, lyrics, and song data section
+      }
+    });
+  
+    function saveSearchToLocalStorage(searchValue) {
+      // Retrieve existing searches from local storage
+      let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+  
+      // Add the new search value to the list
+      recentSearches.unshift(searchValue);
+  
+      // Keep only the latest 5 searches
+      if (recentSearches.length > 5) {
+        recentSearches.pop();
+      }
+  
+      // Save the updated list back to local storage
+      localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+  
+      // Display recent searches
+      displayRecentSearches(recentSearches);
+    }
+  
+    function displayRecentSearches(recentSearches) {
+      recentSearchesContainer.innerHTML = ''; // Clear the container
+      for (const search of recentSearches) {
+        const searchItem = document.createElement('div');
+        searchItem.textContent = search;
+        recentSearchesContainer.appendChild(searchItem);
+      }
+    }
+  
+    // Display initial recent searches on page load
+    displayRecentSearches(JSON.parse(localStorage.getItem('recentSearches')) || []);
+  });
+
+
 //Reload the page after every search
 document.getElementById("clear").addEventListener("click", function() {
     location.reload();
