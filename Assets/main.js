@@ -5,6 +5,9 @@ var width = '';
 var pic = '';
 var trackID = '';
 var lyrics = '';
+var artist = '';
+var album = '';
+var albumArt = '';
 var iframe = document.getElementById('player');
 var trackLyricsURL = '';
 
@@ -118,6 +121,15 @@ async function trackIDAPIcall() {
     }).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
+                //Adding to the data section in HTML 
+                artist = data.tracks.items[0].data.artists.items[0].profile.name;
+                $('#artistName').html(artist);
+                album = data.tracks.items[0].data.albumOfTrack.name;
+                $('#album').html(album);
+                albumArt = data.tracks.items[0].data.albumOfTrack.coverArt.sources[0].url;
+                $('#albumArt').attr("src", albumArt);
+
+
                 trackID = data.tracks.items[0].data.id;
                 // $('#trackID').text(trackID);
                 trackLyricsURL = 'https://spotify23.p.rapidapi.com/track_lyrics/?id=' + trackID;

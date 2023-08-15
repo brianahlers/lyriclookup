@@ -36,3 +36,9 @@ h5{
 .input-group button{
     background-color: red;
 }
+.artist-data {
+    margin-top: 25px;
+}
+.artist-data p {
+    margin-bottom: 50px;
+}
