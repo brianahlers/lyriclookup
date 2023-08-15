@@ -97,26 +97,26 @@ document.getElementById("clear").addEventListener("click", function() {
 // There is a daily limit.
 
 function APIcall() {
-    // var userSong = $("#userSong").val() + ' cover';
-    // var url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet%2C%20id&maxResults=1&q=';
-    // var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
-    // var queryURL = url + userSong + APIKey;
+    var userSong = $("#userSong").val() + ' cover';
+    var url = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet%2C%20id&maxResults=1&q=';
+    var APIKey = '&videoEmbeddable=any&key=AIzaSyC-AUJX5gMJ-aKoHP0yZz3Sl0Q0-k6-92o';
+    var queryURL = url + userSong + APIKey;
      
-    // fetch(queryURL).then(function(response) {
-    //     if(response.ok) {
-    //         response.json().then(function(data) {
-    //             songID = data.items[0].id.videoId;
-    //             height = data.items[0].snippet.thumbnails.high.height;
-    //             width = data.items[0].snippet.thumbnails.high.width;
-    //             console.log(songID);
-    //             console.log(height);
-    //             console.log(width);
-    //             $('#player').attr('src', 'https://www.youtube.com/embed/' + songID + '?autoplay=1?enablejsapi=1');
-    //             $('#player').attr('width', width);
-    //             $('#player').attr('height', height);
-    //         })
-    //     }
-    // })
+    fetch(queryURL).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                songID = data.items[0].id.videoId;
+                height = data.items[0].snippet.thumbnails.high.height;
+                width = data.items[0].snippet.thumbnails.high.width;
+                console.log(songID);
+                console.log(height);
+                console.log(width);
+                $('#player').attr('src', 'https://www.youtube.com/embed/' + songID + '?autoplay=1?enablejsapi=1');
+                $('#player').attr('width', width);
+                $('#player').attr('height', height);
+            })
+        }
+    })
     
 }
 
