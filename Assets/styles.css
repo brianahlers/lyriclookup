@@ -3,11 +3,17 @@
     padding: 0;
 }
 body{
-    font-family: Arial, Helvetica, sans-serif;
-    background: url(./Images/soundwave.jpg);
+    /* font-family: Arial, Helvetica, sans-serif;
+    background-size: cover;
+    background: url('../Assets/Images/newwave.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 90;
+    z-index: 90; */
+    background-image: url('../Assets/Images/newwave.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-position: center; 
 }
 h1{
     text-align: center;
@@ -43,4 +49,72 @@ h5{
 }
 .artist-data p {
     margin-bottom: 50px;
+}
+
+/* Mobile devices (phones) */
+@media (max-width: 576px) {
+    .input-group-lg > .form-control {
+        font-size: 1rem;
+    }
+    .input-group-lg > .btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+    #lyrics {
+        font-size: 1rem;
+    }
+    iframe.youtube-player {
+        height: 200px; 
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+    .input-group-lg > .form-control {
+        font-size: 1.25rem;
+    }
+    .input-group-lg > .btn {
+        font-size: 1.25rem;
+        padding: 0.75rem 1.25rem;
+    }
+    #lyrics {
+        font-size: 1.25rem;
+    }
+    iframe.youtube-player {
+        height: 250px; 
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
+    .input-group-lg > .form-control {
+        font-size: 1.5rem;
+    }
+    .input-group-lg > .btn {
+        font-size: 1.5rem;
+        padding: 1rem 1.5rem;
+    }
+    #lyrics {
+        font-size: 1.5rem;
+    }
+    iframe.youtube-player {
+        height: 300px; 
+    }
+}
+
+/* Desktops */
+@media (min-width: 993px) {
+    .input-group-lg > .form-control {
+        font-size: 1.75rem;
+    }
+    .input-group-lg > .btn {
+        font-size: 1.75rem;
+        padding: 1.25rem 2rem;
+    }
+    #lyrics {
+        font-size: 1.75rem;
+    }
+    iframe.youtube-player {
+        height: 350px; 
+    }
 }

@@ -9,48 +9,45 @@
 </head>
 <body>
     
-    <div class="container-fluid"><h1>Search for your favorite Songs!</h1></body>
+    <div class="container-fluid text-center">
+        <h1>Search for your favorite Songs!</h1>
+    </div>
     <hr>
 
     <!-- Search Bar -->
     <div class="search container-fluid row justify-content-center">
         <h5>Enter Your choice below</h5>
-        <div class="input-group input-group-lg flex-sm-wrap" style="width: 50%;">
-            <input id="userSong" type="text" class="form-control col-sm-12 col-md-6 col-lg-10" placeholder="Enter your favorite song" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-            <button class="btn btn-outline-secondary bg-success text-white col-sm-12 col-md-3 col-lg-2" type="button" id="inputGroup-sizing-lg">Search</button>
-            <button class="btn btn-outline-secondary bg-danger text-white col-sm-12 col-md-3 col-lg-2" type="button" id="clear">Clear</button>
+        <div class="input-group input-group-lg flex-wrap" style="max-width: 600px;">
+            <input id="userSong" type="text" class="form-control" placeholder="Enter your favorite song" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+            <button class="btn btn-outline-secondary bg-success text-white" type="button" id="inputGroup-sizing-lg">Search</button>
+            <button class="btn btn-outline-secondary bg-danger text-white" type="button" id="clear">Clear</button>
         </div>
     </div>
-
 
     <!-- Video Section -->
     <div id="videoSection" class="container-fluid row mt-5">
-
         <!-- Video -->
-        <iframe class="youtube-player col-12 col-sm-12 col-md-8 col-lg-6" id="player" type="text/html" 
-        width="" height="" src="" frameborder="0"></iframe>
-
+        <iframe class="youtube-player col-12 col-md-8 col-lg-6" id="player" type="text/html" width="100%" height="315" src="" frameborder="0"></iframe>
         <!-- Lyrics -->
-        <div class="lyrics col-md-4 col-lg-6 justify-content-around">
-            <h5 style="font-size: 40px;">Lyrics</h5>
-            <!-- <p id="trackID"></p> -->
-            <div id="lyrics" class="overflow-auto" style="max-width: 800px; max-height: 500px; font-size: 25px; background-color: #222; padding-left: 20px;"></div>
+        <div class="lyrics col-12 col-md-4 col-lg-6 justify-content-around mt-3 mt-md-0">
+            <h5>Lyrics</h5>
+            <div id="lyrics" class="overflow-auto bg-dark text-white p-3" style="max-height: 500px; font-size: 1.25rem;"></div>
         </div>
     </div>
 
-    
-
     <!-- Data Section  -->
     <div id="dataSection" class="container-fluid row mt-5">
-        <div class="data col-12 mt-5">
+        <div class="data col-12 text-center">
             <!-- Where we will display the song data (Album, artist, etc.) -->
-            <h5 style="font-size: 40px;">Song Data</h5>
+            <h5>Song Data</h5>
             <div class="container-fluid row justify-content-center mt-5">
-                <div class="artist-data col-4">
-                    <p id="artistName" class="col-4" style="font-size: 25px;"></p>
-                    <p id="album" class="col-4" style="font-size: 25px;"></p>
+                <div class="artist-data col-12 col-md-4">
+                    <p id="artistName" style="font-size: 1.25rem;"></p>
+                    <p id="album" style="font-size: 1.25rem;"></p>
                 </div>
-                <img id="albumArt" src="" alt="" class="col-4" style="width: 250px; height: 200px;">
+                <div class="col-12 col-md-4">
+                    <img id="albumArt" src="" alt="Album Art" class="img-fluid" style="max-width: 250px;">
+                </div>
             </div>
         </div>
     </div>
